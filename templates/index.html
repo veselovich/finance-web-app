@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-start">Symbol</th>
+            <th class="text-start">Name</th>
+            <th class="text-end">Shares</th>
+            <th class="text-end">Price</th>
+            <th class="text-end">TOTAL</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in portfolio%}
+            <tr>
+                <td class="text-start">{{ row.symbol }}</td>
+                <td class="text-start">{{ row.name }}</td>
+                <td class="text-end">{{ row.shares }}</td>
+                <td class="text-end">{{ row.price }}</td>
+                <td class="text-end">{{ row.sum }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+            <td class="border-0 text-end">{{ cash }}</td>
+        </tr>
+        <tr>
+            <td class="border-0 fw-bold text-end" colspan="4"><a style="color: black" href="https://brrr.money/" target="_blank">Faucet</a></td>
+            <td class="border-0 text-end">
+                <form action="/" method="post">
+                    <button type="submit">Get $</button>
+                    <input autocomplete="off" name="faucet" placeholder="Amount" type="number" step="0.01" min="0.01" style="width: 80px">
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
+            <td class="border-0 w-bold text-end">{{ total }}</td>
+        </tr>
+    </tfoot>
+</table>
+
+{% endblock %}
